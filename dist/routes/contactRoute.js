@@ -1,9 +1,11 @@
-import Express from "express";
-import {createContact , deleteContact} from "../controllers/contactController";
-const router = Express.Router();
-
-
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const contactController_1 = require("../controllers/contactController");
+const router = express_1.default.Router();
 /**
  * @swagger
  * /api/v1/contacts:
@@ -32,8 +34,7 @@ const router = Express.Router();
  *       400:
  *         description: Bad request
  */
-router.post('/', createContact);
-
+router.post('/', contactController_1.createContact);
 /**
  * @swagger
  * /api/v1/contacts/admin/{id}:
@@ -53,6 +54,5 @@ router.post('/', createContact);
  *       404:
  *         description: Contact not found
  */
-router.delete('/admin/:id', deleteContact);
-
-export default router;
+router.delete('/admin/:id', contactController_1.deleteContact);
+exports.default = router;

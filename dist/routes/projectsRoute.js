@@ -1,11 +1,13 @@
-import Express from "express";
-import { getProjects, createProject, updateProject, deleteProject } from "../controllers/projectsController";
-import upload from "../utils/upload";
-import verifyBearer from "../utils/verifyBearer";
-const router = Express.Router();
-
-
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const projectsController_1 = require("../controllers/projectsController");
+const upload_1 = __importDefault(require("../utils/upload"));
+const verifyBearer_1 = __importDefault(require("../utils/verifyBearer"));
+const router = express_1.default.Router();
 /**
  * @swagger
  * /api/projects:
@@ -32,8 +34,7 @@ const router = Express.Router();
  *                     type: string
  *                     example: Detailed project description
  */
-router.get("/", getProjects);
-
+router.get("/", projectsController_1.getProjects);
 /**
  * @swagger
  * /api/projects/admin/:
@@ -67,8 +68,7 @@ router.get("/", getProjects);
  *       401:
  *         description: Unauthorized
  */
-router.post("/admin/", verifyBearer, upload.single("projectImage"), createProject);
-
+router.post("/admin/", verifyBearer_1.default, upload_1.default.single("projectImage"), projectsController_1.createProject);
 /**
  * @swagger
  * /api/projects/admin/{id}:
@@ -111,8 +111,7 @@ router.post("/admin/", verifyBearer, upload.single("projectImage"), createProjec
  *       404:
  *         description: Project not found
  */
-router.put("/admin/:id", verifyBearer, upload.single("projectImage"), updateProject);
-
+router.put("/admin/:id", verifyBearer_1.default, upload_1.default.single("projectImage"), projectsController_1.updateProject);
 /**
  * @swagger
  * /api/projects/admin/{id}:
@@ -136,6 +135,5 @@ router.put("/admin/:id", verifyBearer, upload.single("projectImage"), updateProj
  *       404:
  *         description: Project not found
  */
-router.delete("/admin/:id", verifyBearer, deleteProject);
-
-export default router;
+router.delete("/admin/:id", verifyBearer_1.default, projectsController_1.deleteProject);
+exports.default = router;

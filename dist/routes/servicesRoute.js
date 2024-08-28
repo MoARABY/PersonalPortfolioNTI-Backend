@@ -1,11 +1,13 @@
-import Express from "express";
-import { getService, getServices, createService, updateService, deleteService } from "../controllers/servicesController";
-import upload from "../utils/upload";
-import verifyBearer from "../utils/verifyBearer";
-const router = Express.Router();
-
-
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const servicesController_1 = require("../controllers/servicesController");
+const upload_1 = __importDefault(require("../utils/upload"));
+const verifyBearer_1 = __importDefault(require("../utils/verifyBearer"));
+const router = express_1.default.Router();
 /**
  * @swagger
  * /api/services:
@@ -32,8 +34,7 @@ const router = Express.Router();
  *                     type: string
  *                     example: Detailed service description
  */
-router.get("/", getServices);
-
+router.get("/", servicesController_1.getServices);
 /**
  * @swagger
  * /api/services/{id}:
@@ -67,8 +68,7 @@ router.get("/", getServices);
  *       404:
  *         description: Service not found
  */
-router.get("/:id", getService);
-
+router.get("/:id", servicesController_1.getService);
 /**
  * @swagger
  * /api/services/admin/:
@@ -102,8 +102,7 @@ router.get("/:id", getService);
  *       401:
  *         description: Unauthorized
  */
-router.post("/admin/", verifyBearer, upload.single("serviceImage"), createService);
-
+router.post("/admin/", verifyBearer_1.default, upload_1.default.single("serviceImage"), servicesController_1.createService);
 /**
  * @swagger
  * /api/services/admin/{id}:
@@ -146,8 +145,7 @@ router.post("/admin/", verifyBearer, upload.single("serviceImage"), createServic
  *       404:
  *         description: Service not found
  */
-router.put("/admin/:id", verifyBearer, upload.single("serviceImage"), updateService);
-
+router.put("/admin/:id", verifyBearer_1.default, upload_1.default.single("serviceImage"), servicesController_1.updateService);
 /**
  * @swagger
  * /api/services/admin/{id}:
@@ -171,7 +169,5 @@ router.put("/admin/:id", verifyBearer, upload.single("serviceImage"), updateServ
  *       404:
  *         description: Service not found
  */
-router.delete("/admin/:id", verifyBearer, deleteService);
-
-
-export default router;
+router.delete("/admin/:id", verifyBearer_1.default, servicesController_1.deleteService);
+exports.default = router;

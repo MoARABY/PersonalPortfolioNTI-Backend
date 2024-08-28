@@ -2,6 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+
+import { swaggerUi, swaggerSpec } from '../swagger';
+
 dotenv.config();
 const app = express();
 
@@ -30,7 +33,10 @@ app.use('/api/v1/projects', projectsRoute);
 app.use('/api/v1/services', servicesRoute);
 app.use('/api/v1/contacts', contactRoute);
 app.use('/', homeRoute);
-
+app.get("/hello",(req, res) => {
+  res.status(200).send('Hello World');
+});
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 app.get("/secret-path-API",(req, res) => {
@@ -56,8 +62,17 @@ app.all('*',(req,res)=>{
 
 
 // start server
-const PORT: string | number = process.env.PORT || 3000;
+const PORT: string | number = process.env.PORT || 8000;
 const server=app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   dbConnection();
 })
+
+// Handle rejection outside express
+process.on('unhandledRejection', (err:any) => {
+  console.error(`UnhandledRejection Errors: ${err.name} | ${err.message}`);
+  server.close(() => {
+      console.error(`Shutting down....`);
+      process.exit(1);
+  });
+});
