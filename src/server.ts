@@ -24,6 +24,9 @@ import projectsRoute from './routes/projectsRoute';
 import servicesRoute from './routes/servicesRoute';
 import contactRoute from './routes/contactRoute';
 import homeRoute from './routes/homeRoute';
+import educationRoute from './routes/educationRoute';
+import experienceRoute from './routes/experienceRoute';
+import skillsRoute from './routes/skillsRoute';
 
 
 
@@ -32,6 +35,9 @@ import homeRoute from './routes/homeRoute';
 app.use('/api/v1/projects', projectsRoute);
 app.use('/api/v1/services', servicesRoute);
 app.use('/api/v1/contacts', contactRoute);
+app.use('/api/v1/educations', educationRoute);
+app.use('/api/v1/experiences', experienceRoute);
+app.use('/api/v1/skills', skillsRoute);
 app.use('/', homeRoute);
 app.get("/hello",(req, res) => {
   res.status(200).send('Hello World');
