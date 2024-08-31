@@ -8,7 +8,7 @@ const router = Express.Router();
 
 /**
  * @swagger
- * /api/projects:
+ * /api/v1/projects:
  *   get:
  *     summary: Get all projects
  *     tags: [Projects]
@@ -36,7 +36,7 @@ router.get("/", getProjects);
 
 /**
  * @swagger
- * /api/projects/admin/:
+ * /api/v1/projects/admin/:
  *   post:
  *     summary: Create a new project
  *     tags: [Projects]
@@ -71,7 +71,7 @@ router.post("/admin/", verifyBearer, upload.single("projectImage"), createProjec
 
 /**
  * @swagger
- * /api/projects/admin/{id}:
+ * /api/v1/projects/admin/{id}:
  *   put:
  *     summary: Update a project by ID
  *     tags: [Projects]
@@ -115,7 +115,7 @@ router.put("/admin/:id", verifyBearer, upload.single("projectImage"), updateProj
 
 /**
  * @swagger
- * /api/projects/admin/{id}:
+ * /api/v1/projects/admin/{id}:
  *   delete:
  *     summary: Delete a project by ID
  *     tags: [Projects]

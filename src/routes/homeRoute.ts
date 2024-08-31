@@ -2,6 +2,11 @@ import Express from "express";
 import projectsModel from "../models/projectsModel";
 import servicesModel from "../models/servicesModel";
 import contactModel from "../models/contactModel";
+import educationModel from "../models/educationModel";
+import experienceModel from "../models/experienceModel";
+import skillsModel from "../models/skillsModel";
+
+
 const router = Express.Router();
 import AsyncHandler from 'express-async-handler';
 
@@ -10,11 +15,11 @@ import AsyncHandler from 'express-async-handler';
  * @swagger
  * /api/summary:
  *   get:
- *     summary: Get all projects, services, and contacts
+ *     summary: Get all projects, services, educations, experience, skills  and contacts
  *     tags: [Summary]
  *     responses:
  *       200:
- *         description: Successfully retrieved projects, services, and contacts
+ *         description: Successfully retrieved projects, services, educations, experience, skills and contacts
  *         content:
  *           application/json:
  *             schema:
@@ -75,11 +80,17 @@ router.get('/', AsyncHandler(async (req, res) => {
     const projects = await projectsModel.find();
     const services = await servicesModel.find();
     const contacts = await contactModel.find();
+    const educations = await educationModel.find();
+    const experiences = await experienceModel.find();
+    const skills = await skillsModel.find();
     res.status(200).json({
         status: 'success',
         projects,
         services,
         contacts,
+        educations,
+        experiences,
+        skills
     });
 }));
 

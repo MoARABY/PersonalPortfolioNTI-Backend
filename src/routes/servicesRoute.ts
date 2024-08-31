@@ -8,7 +8,7 @@ const router = Express.Router();
 
 /**
  * @swagger
- * /api/services:
+ * /api/v1/services:
  *   get:
  *     summary: Get all services
  *     tags: [Services]
@@ -36,7 +36,7 @@ router.get("/", getServices);
 
 /**
  * @swagger
- * /api/services/{id}:
+ * /api/v1/services/{id}:
  *   get:
  *     summary: Get a service by ID
  *     tags: [Services]
@@ -71,7 +71,7 @@ router.get("/:id", getService);
 
 /**
  * @swagger
- * /api/services/admin/:
+ * /api/v1/services/admin/:
  *   post:
  *     summary: Create a new service
  *     tags: [Services]
@@ -106,7 +106,7 @@ router.post("/admin/", verifyBearer, upload.single("serviceImage"), createServic
 
 /**
  * @swagger
- * /api/services/admin/{id}:
+ * /api/v1/services/admin/{id}:
  *   put:
  *     summary: Update a service by ID
  *     tags: [Services]
@@ -150,7 +150,7 @@ router.put("/admin/:id", verifyBearer, upload.single("serviceImage"), updateServ
 
 /**
  * @swagger
- * /api/services/admin/{id}:
+ * /api/v1/services/admin/{id}:
  *   delete:
  *     summary: Delete a service by ID
  *     tags: [Services]
