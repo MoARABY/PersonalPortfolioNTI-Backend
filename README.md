@@ -27,13 +27,13 @@
 - Express-Rate-Limit: Middleware to limit repeated requests to public APIs.
 
 ## Installation
-- git clone https://github.com/yourusername/portfolio-backend.git
+- git clone https://github.com/yourusername/PersonalPortfolioNTI-Backend.git
 - cd portfolio-backend
 - npm install
 - Set up environment variables: Create a .env file in the root directory and add the following:
--  PORT=5000
--  MONGO_URI=your_mongodb_connection_string
--  JWT_SECRET=your_jwt_secret_key
+ -  PORT=8000
+ -  MONGO_URI=your_mongodb_connection_string
+ -  JWT_SECRET=your_jwt_secret_key
 - npm run dev
 
 ## Contributing
